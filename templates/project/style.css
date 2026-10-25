@@ -1,0 +1,102 @@
+/* 知识动画 9:16 版式 —— 以 1080x1920 为准（视频号实测安全区）
+ * 0–170px 禁区（状态栏/返回键/「…」）；标题栏从 176 开始：主标题 54px，章节导航 34px，底线约 346
+ * 内容区 .stage 从 350 开始，带头像时高 850（到 1200）；字幕 .subs top 1420（中心≈1450，底≤1490）
+ * 头像圆窗 #av 左侧、字幕正上方（1208–1408）；两侧各 ~97px 可能被裁，标题居中
+ * 调位置只移动、不缩字号；某页太高时仅对该页 .center 加 zoom:.88~.9
+ * 配色：米白底 #F5EFE3 / 正文 #222 / 深红 #B22222 / 药丸高亮黄 #F6D44A / 字幕重点黄 #FFD84A
+ */
+@font-face{font-family:"Noto Serif CJK SC";src:local("Noto Serif CJK SC");font-weight:400}
+@font-face{font-family:"Noto Serif CJK SC";src:local("Noto Serif CJK SC Bold");font-weight:700}
+@font-face{font-family:"Noto Sans CJK SC";src:local("Noto Sans CJK SC");font-weight:400}
+@font-face{font-family:"Noto Sans CJK SC";src:local("Noto Sans CJK SC Bold");font-weight:700}
+*{box-sizing:border-box}
+body{margin:0;background:#F5EFE3}
+#main{width:1080px;height:1920px;position:relative;overflow:hidden;background:#F5EFE3;color:#222;font-family:"Noto Sans CJK SC",sans-serif}
+.red{color:#B22222}
+em{font-style:normal}
+.topbar{position:absolute;top:176px;left:0;right:0;height:170px;padding:16px 60px 0;border-top:3px solid #222;border-bottom:3px solid #222;background:#F5EFE3;z-index:5}
+.ttl{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:54px;line-height:1.2;white-space:nowrap}
+.navrow{margin-top:18px;font-size:34px;line-height:1.2;white-space:nowrap;color:#999}
+.navrow .sep{margin:0 14px;color:#bbb}
+.stage{position:absolute;top:350px;left:0;right:0;height:1330px;overflow:hidden}
+.page{position:absolute;inset:0}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 80px;text-align:center}
+.cover{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:124px;line-height:1.25}
+.cover em{color:#B22222}
+.kicker{font-size:44px;color:#555;margin-bottom:40px;letter-spacing:2px}
+.sub{font-size:40px;color:#777;margin:20px 0 30px}
+.cap{font-size:42px;color:#555;margin-top:30px}
+.ringwrap{position:relative;width:700px;height:700px;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;inset:0}
+.ring circle{fill:none;stroke:#B22222;stroke-width:6;opacity:0}
+.giant{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:400px;line-height:1;white-space:nowrap}
+.giant .unit{font-size:150px;margin-left:10px}
+.g2{font-size:300px}
+.g2 .unit{font-size:130px}
+.sub2{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:64px;margin-top:90px}
+.barrow{width:920px;text-align:left;margin:30px 0}
+.blabel{font-size:46px;font-weight:700;margin-bottom:14px}
+.bar{height:96px;width:var(--w);border-radius:6px}
+.bar.red{background:#B22222}.bar.dark{background:#222}
+.bval{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:90px;margin-top:10px}
+.note{width:920px;text-align:left;font-size:38px;color:#666;border-left:6px solid #B22222;padding-left:20px;margin:10px 0 40px}
+.quote{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:100px;line-height:1.5}
+.q2{font-size:84px}
+.uline{width:600px;height:30px;margin-top:-10px}
+.uline path,.diagram .arrow{fill:none;stroke:#B22222;stroke-width:6;stroke-linecap:round;opacity:0}
+.question{font-family:"Noto Sans CJK SC",sans-serif;font-weight:400;font-size:48px;line-height:1.5;color:#444;margin-top:80px;padding:30px 40px;border:3px solid #222;border-radius:20px}
+.pills{display:flex;flex-direction:column;gap:40px;align-items:center}
+.pill{font-size:62px;font-weight:700;padding:22px 64px;border:4px solid #222;border-radius:999px;background:transparent}
+.pill.big{font-family:"Noto Serif CJK SC",serif;font-size:80px;margin-top:20px}
+.diagram{width:760px;height:760px}
+.ico{fill:none;stroke:#222;stroke-width:5}
+.it{font-size:40px;text-anchor:middle;fill:#222;font-family:"Noto Sans CJK SC"}
+.roof{fill:#222}.rack{fill:none;stroke:#222;stroke-width:8}.slot{stroke:#222;stroke-width:5}
+.gt{font-size:56px;font-weight:700;text-anchor:middle;fill:#B22222;font-family:"Noto Sans CJK SC"}
+.cards{display:flex;gap:40px;align-items:flex-end}
+.card{border:4px solid #222;border-radius:24px;padding:40px 30px;background:#fff8}
+.card.big{width:540px}.card.small{width:340px}
+.cl{font-size:44px;color:#555}
+.cv{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:150px;line-height:1.1}
+.card.small .cv{font-size:96px}
+.cv small{font-size:.45em}
+.list{align-items:flex-start;text-align:left}
+.list .kicker{align-self:center}
+.li{display:flex;gap:40px;align-items:flex-start;margin:40px 0}
+.no{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:200px;line-height:.9}
+.lt{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:70px;padding-top:20px}
+.ls{font-family:"Noto Sans CJK SC",sans-serif;font-weight:400;font-size:38px;color:#666;margin-top:16px}
+.subs{position:absolute;left:0;right:0;top:1420px;height:80px;z-index:6}
+.subt{position:absolute;left:0;right:0;text-align:center;font-size:56px;font-weight:700;color:#fff;white-space:nowrap;
+text-shadow:-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,2px 2px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 0 6px rgba(0,0,0,.5)}
+#endpad{position:absolute;width:1px;height:1px;opacity:0}
+
+.stage.withav{height:850px}
+#cov{position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:20}
+#av{position:absolute;left:110px;top:1208px;width:200px;height:200px;z-index:7}
+#avs{position:absolute;inset:0;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+#avs img{width:100%;height:100%;border-radius:50%;display:block}
+#avs .ring{position:absolute;inset:0;border-radius:50%;border:5px solid #fff}
+#glow{position:absolute;inset:-9px;border-radius:50%;border:4px solid #B22222;opacity:.15}
+#wave{position:absolute;left:212px;top:159px;height:33px;display:flex;gap:5px;align-items:center}
+#wave i{display:block;width:6px;height:33px;border-radius:3px;background:#B22222;transform:scaleY(.15)}
+/* 扩展组件 */
+.hlw{color:#FFD84A}
+.giant.g3{font-size:220px}
+.giant.g4{font-size:180px}
+.plus{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:120px;color:#B22222;line-height:1;margin:10px 0}
+.box{border:4px solid #222;border-radius:24px;padding:24px 50px;font-size:64px;font-weight:700;background:#fff8}
+.box.red{background:#B22222;color:#fff;border-color:#B22222}
+.row{display:flex;gap:30px;align-items:center;justify-content:center}
+.pills.h{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:28px}
+.pills.h .pill{font-size:54px;padding:18px 44px}
+.vs{display:flex;gap:30px}
+.vs .card{width:440px;text-align:center}
+.vs .cv{font-size:110px}
+.stamp{font-family:"Noto Serif CJK SC",serif;font-weight:700;font-size:96px;color:#B22222;border:8px solid #B22222;border-radius:20px;padding:6px 36px;transform:rotate(-6deg);margin-top:40px}
+#avs{background:#ddd}
+#avhole{position:absolute;inset:5px;border-radius:50%;background:#444}
+.subt .hl{color:#FFD84A}
+.topbar{padding:16px 40px 0;text-align:center}
+.navrow .sep{margin:0 8px}
+

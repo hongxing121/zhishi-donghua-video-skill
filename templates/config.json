@@ -1,0 +1,17 @@
+{
+  "_说明": "所有路径相对本 config.json 所在目录。脚本统一用法：python3 scripts/XX.py config.json",
+  "source_video": "input/source.mp4",
+  "work_dir": "work",
+  "title": "这里写主标题（≤12字）",
+  "chapters": ["01 第一章", "02 第二章", "03 第三章"],
+  "whisper": {"model": "medium", "language": "zh", "device": "cpu", "compute_type": "int8",
+              "initial_prompt": "以下是普通话的句子。这里可以写专有名词、人名、品牌名，提高识别准确率。"},
+  "cuts": {"auto_silence": true, "min_silence": 0.3, "pad": 0.07, "trim": [0, null],
+           "manual_remove": []},
+  "subs": {"max_chars": 16, "highlight": []},
+  "circle": {"crop": null, "size": 190, "ring": 5, "x": 110, "y": 1208},
+  "cover": {"photo": null, "photo_time": 1.0, "focus_y": 0.35, "lines": ["封面第一行", "封面第二行？"], "font_size": 110, "duration": 0.3},
+  "speed": 1.0,
+  "fps": 30,
+  "hyperframes": {"version": "0.8.190", "node_bin": ""}
+}

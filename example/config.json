@@ -1,0 +1,63 @@
+{
+ "_说明": "所有路径相对本 config.json 所在目录。脚本统一用法：python3 scripts/XX.py config.json",
+ "source_video": "input/source.mov",
+ "work_dir": "work",
+ "title": "私域+新渠道展 首届AI大会",
+ "chapters": [
+  "01 大会亮点",
+  "02 实战局",
+  "03 现场见"
+ ],
+ "whisper": {
+  "model": "medium",
+  "language": "zh",
+  "device": "cpu",
+  "compute_type": "int8",
+  "initial_prompt": "以下是普通话的句子。私域新渠道展，AI大会，实战局，达人。"
+ },
+ "cuts": {
+  "auto_silence": true,
+  "min_silence": 0.3,
+  "pad": 0.07,
+  "trim": [
+   0.6,
+   11.2
+  ],
+  "manual_remove": []
+ },
+ "subs": {
+  "max_chars": 16,
+  "highlight": [
+   "AI"
+  ]
+ },
+ "circle": {
+  "crop": [
+   2,
+   190,
+   540
+  ],
+  "size": 190,
+  "ring": 5,
+  "x": 110,
+  "y": 1208
+ },
+ "cover": {
+  "photo": null,
+  "photo_time": 2.0,
+  "focus_y": 0.35,
+  "lines": [
+   "展会加了个",
+   "AI大会？"
+  ],
+  "font_size": 110,
+  "duration": 0.3
+ },
+ "speed": 1.0,
+ "fps": 30,
+ "hyperframes": {
+  "version": "0.8.190",
+  "node_bin": ""
+ },
+ "pages": "pages.json"
+}

@@ -1,0 +1,12 @@
+[
+ {
+  "start": 0.0,
+  "ch": 0,
+  "html": "<div class=\"center\"><div class=\"kicker\" data-anim=\"up\" data-t=\"0.4\">11月23、24日</div><div class=\"giant g3 red\" data-anim=\"scale\" data-t=\"0.6\">11.23-24</div><div class=\"sub2\" data-anim=\"up\" data-t=\"2.4\">第14届 私域+新渠道展</div><div class=\"question\" data-anim=\"up\" data-t=\"4.1\">有什么新的亮点？</div></div>"
+ },
+ {
+  "start": 6.0,
+  "ch": 1,
+  "html": "<div class=\"center\"><div class=\"kicker\" data-anim=\"up\" data-t=\"6.2\">最近在杭州经常做</div><div class=\"quote\" data-anim=\"up\" data-t=\"8.1\">头部<em class=\"red\">AI</em>实战局</div><svg class=\"uline\" viewBox=\"0 0 600 30\"><path d=\"M10 18 Q300 4 590 16\" data-anim=\"draw\" data-t=\"8.8\"/></svg></div>"
+ }
+]
